@@ -1,0 +1,11 @@
+<%
+const Games = $.get('Games');
+Games.all().forEach(function(game) {
+if(game.shortName === req._parsedOriginalUrl.path.split('/').pop().split('game=').pop() ||
+  `${game.shortName}?` === req._parsedOriginalUrl.path.split('/').pop().split('game=').pop()){%>
+<li><a href="game=<%=game.shortName%>" class="btn-link active">
+        <%=game.shortName%></a></li>
+<%}else{%>
+<li><a href="game=<%=game.shortName%>" class="btn-link">
+        <%=game.shortName%></a></li>
+<%}});%>

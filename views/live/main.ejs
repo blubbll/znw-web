@@ -1,0 +1,102 @@
+<%
+const//imports
+FlatDB = $.get('FlatDB');
+//---
+const//globals
+Games = $.get('Games'),
+baseUrl = $.get('baseUrl'),
+obfuscator = $.get('javascript-obfuscator'),
+fs = $.get('fs');
+game = $.get('game');
+%>
+    <%//https://stackoverflow.com/a/4403189
+   String.prototype.minify=function(){var e=this;return e=(e=(e=(e=(e=(e=e.replace(/\/\*(?:(?!\*\/)[\s\S])*\*\/|[\r\n\t]+/g,""))
+   .replace(/ {2,}/g," ")).replace(/ ([{:}]) /g,"$1")).replace(/([;,]) /g,"$1")).replace(/([{:}]) /g,"$1")).replace(/ !/g,"!")};
+   %>
+        <!-- Fallback für IE -->
+        <%- include(process.env.PWD + '/fallback/_html.ejs').minify() %>
+
+            <head>
+                <%- include(process.env.PWD + '/templates/meta.ejs').minify() %>
+                    <title> Zircon Network [⚡] </title>
+                    <style>
+                        <%const env=process.env.PWD+"/assets/css/";
+                        ['cookieconsent.min.css', //Cookie-Bestätigung
+                        'bootstrap.min.css', //Bootstrap
+                        'bootflat.min.css', //Bootstrap theme
+                        'style.css' //custom style 
+                        ].forEach(function(style) {
+                            %><%-include(env + style).minify();
+                            %><%
+                        }
+
+                        );
+                        %>
+                    </style>
+                    <!-- Fallback assets für IE -->
+                    <%- include(process.env.PWD + '/fallback/_assets.ejs').minify() %>
+            </head>
+
+            <body>
+                <form method="get" target="_self" onsubmit="if(typeof window.ie!=='undefined'&&window.ie){_sF();return!1}" )>
+                    <div id="navbar" class="navbar navbar-inverse navbar-fixed-top shadow admin" role="navigation" style="background: black">
+                        <div class="container-fluid">
+                            <div class="navbar-header pull-left"> <button type="submit" class="btn-link navbar-brand" formaction="./">Zircon Network ⚡</button></div>
+                            <div class="navbar-left pull-left"> <button type="submit" class="btn-link navbar-brand" formaction="/live/logout">Logout</button> </div>
+                            <div class="navbar-right pull-right"> <button type="submit" class="btn-link navbar-brand" formaction="/">Normal</button> </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <!-- sidebar -->
+                        <div id="sidebar" role="navigation">
+                            <ul class="nav" id="sidebar-nav">
+                                <li><span class="list-item">Games:</span></li>
+                                <%-include(process.env.PWD + '/templates/games.ejs').minify();%>
+                                    <li> <input type="hidden" name="newGame_shortName" id="newGame_input" />
+                                        <%-include(process.env.PWD + '/templates/btn_createGame.ejs').minify();%>
+                            </ul>
+                        </div>
+                        <!-- main area -->
+                        <div id="main" class="start">
+                            <h1 id="section1">Why Bootstrap?</h1>
+                            <% if(typeof weather !== 'undefined' && weather !== null){ %>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Server Info</div>
+                                    <div class="panel-body">
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <td>IP:</td>
+                                                <td>
+                                                    <%= weather + game.ipEnd %>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <% } %>
+                                    <p>Twitter Bootstrap is a front-end toolkit to rapidly build web applications. It is a framework that uses some of the latest browser techniques to provide you with stylish typography, navigation, buttons, tables, etc. One of the primary changes in Bootstrap 3 is an emphasis on Mobile-First responsive design. The goal is to elevate the mobile experience to a first-class citizen of the design process, because several billion mobile users is quite a large market to tap into. So, sites built with the current Bootstrap version target mobile devices and scale for larger screens depending on screen size. </p>
+                                    <p>Vestibulum porttitor massa eget pellentesque eleifend. Suspendisse tempor, nisi eu placerat auctor, est erat tempus neque, pellentesque venenatis eros lorem vel quam. Nulla luctus malesuada porttitor. Fusce risus mi, luctus scelerisque hendrerit feugiat, volutpat gravida nisi. Quisque facilisis risus in lacus sagittis malesuada. Suspendisse non purus diam. Nunc commodo felis sit amet tortor adipiscing varius. Fusce commodo nulla quis fermentum hendrerit. Donec vulputate, tellus sed venenatis sodales, purus nibh ullamcorper quam, sit amet tristique justo velit molestie lorem.</p>
+                                    <h1 id="section2">Section 2</h1>
+                                    <p>Fusce sollicitudin lacus lacinia mi tincidunt ullamcorper. Aenean velit ipsum, vestibulum nec tincidunt eu, lobortis vitae erat. Nullam ultricies fringilla ultricies. Sed euismod nibh quis tincidunt dapibus. Nulla quam velit, porta sit amet felis eu, auctor fringilla elit. Donec convallis tincidunt nibh, quis pellentesque sapien condimentum a. Phasellus purus dui, rhoncus id suscipit id, ornare et sem. Duis aliquet posuere arcu a ornare. Pellentesque consequat libero id massa accumsan volutpat. Fusce a hendrerit lacus. Nam elementum ac eros eu porttitor. Phasellus enim mi, auctor sit amet luctus a, commodo fermentum arcu. In volutpat scelerisque quam, nec lacinia libero.</p>
+                                    <h1 id="section3">Section 3</h1>
+                                    <p>Aliquam a lacinia orci, iaculis porttitor neque. Nullam cursus dolor tempus mauris posuere, eu scelerisque sem tincidunt. Praesent blandit sapien at sem pulvinar, vel egestas orci varius. Praesent vitae purus at ante aliquet luctus vel quis nibh. Mauris id nulla vitae est lacinia rhoncus a vel justo. Donec iaculis quis sapien vel molestie. Aliquam sed elementum orci. Vestibulum tristique tempor risus et malesuada. Sed eget ligula sed quam placerat dapibus. Integer accumsan ac massa at tempus.</p>
+                                    <h1 id="section4">Section 4</h1>
+                                    <p>Aliquam a lacinia orci, iaculis porttitor neque. Nullam cursus dolor tempus mauris posuere, eu scelerisque sem tincidunt. Praesent blandit sapien at sem pulvinar, vel egestas orci varius. Praesent vitae purus at ante aliquet luctus vel quis nibh. Mauris id nulla vitae est lacinia rhoncus a vel justo. Donec iaculis quis sapien vel molestie. Aliquam sed elementum orci. Vestibulum tristique tempor risus et malesuada. Sed eget ligula sed quam placerat dapibus. Integer accumsan ac massa at tempus.</p>
+                        </div>
+                        <!-- /.col-xs-12 main -->
+                        <%- include(process.env.PWD + '/templates/footer.ejs'); %>
+                    </div>
+                    <!--/.container-->
+                 
+                    <!-- jQuery -->
+                    <script type="text/javascript" charset="UTF-8">
+                        <%- include(process.env.PWD + '/assets/js/jQuery.js'); %>
+                    </script>
+                    <!-- ClientJS -->
+                    <script type="text/javascript" charset="UTF-8">
+                        <%- include(process.env.PWD + '/assets/js/live.js').minify(); %>
+                    </script>
+                </form>
+            </body>
+
+            </html>
