@@ -1,0 +1,55 @@
+<%
+const//imports
+FlatDB = $.get('FlatDB');
+//---
+const//globals
+Games = $.get('Games'),
+baseUrl = $.get('baseUrl'),
+obfuscator = $.get('javascript-obfuscator'),
+fs = $.get('fs');
+game = $.get('game');
+%>
+    <%//https://stackoverflow.com/a/4403189
+   String.prototype.minify=function(){var e=this;return e=(e=(e=(e=(e=(e=e.replace(/\/\*(?:(?!\*\/)[\s\S])*\*\/|[\r\n\t]+/g,""))
+   .replace(/ {2,}/g," ")).replace(/ ([{:}]) /g,"$1")).replace(/([;,]) /g,"$1")).replace(/([{:}]) /g,"$1")).replace(/ !/g,"!")};
+   %>
+        <!-- Fallback für IE -->
+        <%- include(process.env.PWD + '/fallback/_html.ejs').minify() %>
+
+            <head>
+                <%- include(process.env.PWD + '/templates/meta.ejs').minify() %>
+                    <title> NW&nbsp;&rsaquo;&nbsp;Login </title>
+                    <!-- Cookie-Bestätigung -->
+                    <style>
+                        <%const env=process.env.PWD+"/assets/css/";
+                        ['cookieconsent.min.css', //Cookie-Bestätigung
+                        'bootstrap.min.css', //Bootstrap
+                        'bootflat.min.css', //Bootstrap theme
+                        'style.css' //custom style 
+                        ].forEach(function(style) {
+                            %><%-include(env + style).minify();
+                            %><%
+                        }
+
+                        );
+                        %>
+                    </style>
+                    <!-- Fallback assets für IE -->
+                    <%- include(process.env.PWD + '/fallback/_assets.ejs').minify() %>
+            </head> <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>" id="fullBg" />
+            <div class="container-fluid">
+                <form method="post" target="_self" onsubmit="if(typeof window.ie!=='undefined'&&window.ie){_sF();return!1}else{document.querySelectorAll('form')[0].submit();}" )>
+                    <div class="form-signin col-xs-10 col-sm-4 col-md-4 col-lg-3">
+                        <h1 class="form-signin-heading">Please Login</h1> <input type="password" class="form-control form-control-lg" name="password" placeholder="Password" autofocus="" required="" autocomplete="off" /><button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button> </form>
+                </div>
+            </div>
+            <script type="text/javascript" charset="UTF-8">
+                <%(function(){
+          const dir = process.env.PWD + "/assets/js/";
+         ['cookieconsent.js-min' //Cookie-Bestätigung
+         ].forEach(function(script){%>
+                <%- include(dir + script).minify().minify();%>
+                <%})})();%>
+            </script> <noscript><%- include(process.env.PWD + '/fallback/matomo.ejs').minify() %></noscript> </body>
+
+            </html>

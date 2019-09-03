@@ -1,0 +1,78 @@
+<%let//vars
+baseUrl = $.get('baseUrl'),
+main = $.get('main')
+;%>
+<base href="<%=baseUrl%>" />
+<link href="http://gmpg.org/xfn/11" rel="profile" />
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=EDGE" /><![endif]-->
+<!--[if !IE]><meta http-equiv="X-UA-Compatible" content="chrome=1" /><![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8" />
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<!-- if IEMobile ><meta http-equiv="cleartype" content="on" />< endif -->
+<link href="<%=icon%>" rel="shortcut icon" type="image/x-icon">
+<link href="<%=icon%>" rel="icon" type="image/x-icon" />
+<link href="<%=fullUrl%>" rel="alternate" type="text/html" title="Zircon Network" />
+<link href="<%=icon%>" rel="apple-touch-icon" />
+<link href="<%=icon%>" rel="apple-touch-icon-precomposed" />
+<link href="<%=fullUrl%>" rel="canonical" />
+<meta content="index follow" name="Googlebot" />
+<meta http-equiv="description" content="<%=appDescription%>" />
+<meta http-equiv="keywords" content="<%=appKeywords%>" />
+<meta http-equiv="refresh" content="2147483647" />
+<!--chrome-->
+<link rel="manifest" href="/manifest.json">
+<!--android-->
+<!--ms-->
+<meta name="application-name" content="<%=appName%>" />
+<meta name="msapplication-starturl" content="<%=fullUrl%>" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-title" content="<%=appName%>" />
+<meta name="author" content="<%=appAuthor%>" />
+<meta name="copyright" content="Ⓒ<%=(new Date()).getFullYear() + ' ' + appAuthor%>" />
+<meta name="description" content="<%=appDescription%>" />
+<meta name="generator" content="<%=baseUrl%>" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="MobileOptimized" content="true" />
+<meta name="msapplication-tap-highlight" content="no" />
+<meta name="msapplication-TileColor" content="#2d89ef" />
+<meta name="ROBOTS" content="INDEX FOLLOW" />
+<meta name="theme-color" content="#ffffff" />
+<%var scale = 1; %>
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=<%=scale%>, shrink-to-fit=no, minimum-scale=<%=scale%>, maximum-scale=<%=scale%>, user-scalable=no, minimal-ui, shrink-to-fit=yes, target-densitydpi=device-dpi" />
+<meta property="og site_name" content="<%=appName%>" />
+<meta property="og title" content="<%=appName%>" />
+<meta property="og type" content="text/html" />
+<meta property="og url" content="<%=main%>" />
+<%#<link rel=manifest href="data:application/manifest+json,%=`
+{
+  "short_name": "${appNameShort}",
+  "name": "${appName}",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#ecf0f1",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#3498db"
+}
+`.minify();%">%>
+<script type="text/javascript" charset="UTF-8">
+    (function() {
+        'use strict';
+        var icon = "<%=icon%>";
+        var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.href = icon;
+        link.rel = 'shortcut icon';
+        if (typeof document.head !== 'undefined') document.head.appendChild(link);
+        if (typeof document.currentScript !== 'undefined') document.currentScript.remove();
+    })();
+</script>

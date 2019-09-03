@@ -1,0 +1,77 @@
+<%
+const//imports
+FlatDB = $.get('FlatDB');
+//---
+const//globals
+Games = $.get('Games'),
+baseUrl = $.get('baseUrl');
+%>
+<%//https://stackoverflow.com/a/4403189
+   String.prototype.minify=function(){var e=this;return e=(e=(e=(e=(e=(e=e.replace(/\/\*(?:(?!\*\/)[\s\S])*\*\/|[\r\n\t]+/g,""))
+   .replace(/ {2,}/g," ")).replace(/ ([{:}]) /g,"$1")).replace(/([;,]) /g,"$1")).replace(/([{:}]) /g,"$1")).replace(/ !/g,"!")};
+   %>
+<!DOCTYPE HTML>
+<html ⚡>
+
+<head>
+    <title> ZNW&nbsp;&rsaquo;&nbsp;Cookies </title>
+    <meta name="description" content="The Zircon Network">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="canonical" href="<%= baseUrl %>">
+    <!-- custom style -->
+    <style amp-custom>
+        /* any custom styles go here. */
+        body {
+            background-color: white;
+        }
+
+        amp-img {
+            border: 5px solid black;
+        }
+
+        amp-img.grey-placeholder {
+            background-color: grey;
+        }
+    </style>
+    <!-- Fallback assets für IE -->
+    <%- include(process.env.PWD + '/fallback/_assets.ejs').minify() %>
+</head>
+
+<body>
+    <div id="form">
+        <!-- top navbar -->
+        <div id="navbar" class="navbar navbar-inverse navbar-fixed-top shadow" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header pull-left"> <a class="btn-link navbar-brand" href="./">Zircon Network</button></div>
+                <div class="navbar-right pull-right"> </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <!-- sidebar -->
+                <div id="sidebar" role="navigation">
+                    <ul class="nav" id="sidebar-nav">
+                        <li><span class="list-item">Games:</span></li>
+                        <%-include(process.env.PWD + '/templates/gamesAMP.ejs').minify();%>
+                    </ul>
+                </div>
+                <!-- main area -->
+                <div id="main">
+                    <h1 id="section1">Why do we use Cookies?</h1>
+                    <p>We use Cookies to make the Backend Login work.</p>
+                    <p>We also use them to analyse (anonymised) who visits us using a self-hosted <a href="https://matomo.org/" target="_blank" class="btn-link">Matomo</a> instance</p>
+                    <p> When your use our contact form at <a href="/contact" target="_self" class="btn-link">/contact</a>, microsoft will use cookies for that sub page, and the <a href="https://www.microsoft.com/en-us/servicesagreement/">Microsoft Terms</a> will apply. </p>
+                    <p id="currentInfo"> <noscript> You need Javascript for that. </noscript> </p>
+                </div>
+                <!-- /.col-xs-12 main -->
+                <%- include(process.env.PWD + '/templates/footer.ejs'); %>
+            </div>
+            <!--/.row-->
+        </div>
+        <!--/.container-->
+    </div>
+    </div>
+</body>
+
+</html>

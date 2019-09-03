@@ -1,0 +1,1 @@
+!function(b,e,g){if("standalone"in e&&e.standalone){var a,c=b.location,f=/^(a|html)$/i;b.addEventListener("click",function(b){var d;for(a=b.target;!f.test(a.nodeName);)a=a.parentNode;"href"in a&&(d=a.href).replace(c.href,"").indexOf("#")&&(!/^[a-z\+\.\-]+:/i.test(d)||0===d.indexOf(c.protocol+"//"+c.host))&&(b.preventDefault(),c.href=a.href)},!1)}}(document,window.navigator);

@@ -1,0 +1,82 @@
+<%
+const//imports
+FlatDB = $.get('FlatDB');
+//---
+const//globals
+Games = $.get('Games'),
+baseUrl = $.get('baseUrl'),
+obfuscator = $.get('javascript-obfuscator'),
+fs = $.get('fs');
+game = $.get('game');
+%>
+<%//https://stackoverflow.com/a/4403189
+   String.prototype.minify=function(){var e=this;return e=(e=(e=(e=(e=(e=e.replace(/\/\*(?:(?!\*\/)[\s\S])*\*\/|[\r\n\t]+/g,""))
+   .replace(/ {2,}/g," ")).replace(/ ([{:}]) /g,"$1")).replace(/([;,]) /g,"$1")).replace(/([{:}]) /g,"$1")).replace(/ !/g,"!")};
+   %>
+<!DOCTYPE HTML>
+<!-- Fallback für IE -->
+       <%- include(process.env.PWD + '/fallback/_html.ejs').minify() %>
+   <head>
+     <%- include(process.env.PWD + '/templates/meta.ejs').minify() %>
+      <title> ZNW&nbsp;&rsaquo;&nbsp;404 </title>
+       <meta name="description" content="Site not found">
+         <style><%const env = process.env.PWD + "/assets/css/";
+         ['cookieconsent.min.css', //Cookie-Bestätigung
+                        'bootstrap.min.css', //Bootstrap
+                        'bootflat.min.css', //Bootstrap theme
+                        'style.css', //custom style 
+                        'nprogress.css' //custom style 
+         ].forEach(function(style){%><%-include(env + style).minify();%><%});%></style>
+     <!-- Fallback assets für IE -->
+       <%- include(process.env.PWD + '/fallback/_assets.ejs').minify() %>
+   </head>
+   <body id="barba-wrapper">
+       <form class="barba-container"method="get" target="_self" onsubmit="if(typeof window.ie!=='undefined'&&window.ie){_sF();return!1}">
+         <div id="navbar" class="navbar navbar-inverse navbar-fixed-top shadow admin" role="navigation">
+            <div class="container-fluid">
+               <div class="navbar-header pull-left"> <a href="./" class="btn-link navbar-brand">Zircon Network</a></div>
+               <div class="navbar-right pull-right">
+                  <button type="submit" class="btn-link navbar-brand" formaction="/live">Backend</button>
+               </div>
+            </div>
+         </div>
+               <!-- sidebar -->
+               <div id="sidebar" role="navigation">
+                  <ul class="nav" id="sidebar-nav">
+                     <li><span class="list-item">Games:</span></li>
+                     <%-include(process.env.PWD + '/templates/games.ejs').minify();%>
+                  </ul>
+               </div>
+               <!-- main area -->
+               <div id="main">
+                  <h1 id="section1">404</h1>
+                  <p>Page not found.</p>
+               </div>
+               <!-- /.col-xs-12 main -->
+                <%- include(process.env.PWD + '/templates/footer.ejs'); %>
+         
+         </div>
+         <!--/.container-->
+         </div>
+<script type="text/javascript" charset="UTF-8">
+                            <%(function(){
+          const dir = process.env.PWD + "/assets/js/";
+         ['jQuery.js-min',//jQuery
+             'browserdetect.js-min',
+             'cookieconsent.js-min', //Cookie-Bestätigung
+             'client.js-min',
+             'manifesto.js-min', //offlinemanifest
+             'stay-standalone.js-min',
+             'scrollbar.js-min',
+             'nprogress.js-min',
+             'instantclick.js-min'
+         ].forEach(function(script){%>
+                            <%- include(dir + script).minify().minify();%>
+                            <%})})();%>
+                        </script>
+     <noscript><%- include(process.env.PWD + '/fallback/matomo.ejs').minify() %></noscript>
+     
+      </form>
+
+   </body>
+</html>
